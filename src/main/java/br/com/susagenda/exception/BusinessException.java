@@ -1,0 +1,8 @@
+package br.com.susagenda.exception;
+
+public class BusinessException extends RuntimeException {
+
+    public BusinessException(String message) {
+        super(message);
+    }
+}

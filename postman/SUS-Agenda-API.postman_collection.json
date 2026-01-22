@@ -1,0 +1,1217 @@
+{
+	"info": {
+		"_postman_id": "sus-agenda-collection",
+		"name": "SUS Agenda API",
+		"description": "API para Sistema de Agendamento do SUS - Gerenciamento de pacientes, profissionais, unidades de saúde, agendamentos e lista de espera.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "apiVersion",
+			"value": "api/v1",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "Pacientes",
+			"description": "Gerenciamento de pacientes do SUS",
+			"item": [
+				{
+					"name": "Cadastrar Paciente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"João da Silva\",\n  \"cpf\": \"12345678901\",\n  \"cartaoSus\": \"123456789012345\",\n  \"dataNascimento\": \"1990-05-15\",\n  \"telefone\": \"11999998888\",\n  \"email\": \"joao.silva@email.com\",\n  \"endereco\": \"Rua das Flores, 123\",\n  \"bairro\": \"Centro\",\n  \"cidade\": \"São Paulo\",\n  \"estado\": \"SP\",\n  \"cep\": \"01234567\",\n  \"prioridade\": null\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/pacientes",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "pacientes"]
+						},
+						"description": "Cadastra um novo paciente no sistema"
+					}
+				},
+				{
+					"name": "Buscar Paciente por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/pacientes/:id",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "pacientes", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Busca um paciente pelo ID"
+					}
+				},
+				{
+					"name": "Buscar Paciente por CPF",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/pacientes/cpf/:cpf",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "pacientes", "cpf", ":cpf"],
+							"variable": [
+								{
+									"key": "cpf",
+									"value": "12345678901"
+								}
+							]
+						},
+						"description": "Busca um paciente pelo CPF"
+					}
+				},
+				{
+					"name": "Buscar Paciente por Cartão SUS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/pacientes/cartao-sus/:cartaoSus",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "pacientes", "cartao-sus", ":cartaoSus"],
+							"variable": [
+								{
+									"key": "cartaoSus",
+									"value": "123456789012345"
+								}
+							]
+						},
+						"description": "Busca um paciente pelo número do Cartão SUS"
+					}
+				},
+				{
+					"name": "Listar Todos os Pacientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/pacientes",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "pacientes"]
+						},
+						"description": "Lista todos os pacientes cadastrados"
+					}
+				},
+				{
+					"name": "Buscar Pacientes por Nome",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/pacientes/buscar?nome=João",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "pacientes", "buscar"],
+							"query": [
+								{
+									"key": "nome",
+									"value": "João"
+								}
+							]
+						},
+						"description": "Busca pacientes pelo nome (busca parcial)"
+					}
+				},
+				{
+					"name": "Atualizar Paciente",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"João da Silva Santos\",\n  \"cpf\": \"12345678901\",\n  \"cartaoSus\": \"123456789012345\",\n  \"dataNascimento\": \"1990-05-15\",\n  \"telefone\": \"11999997777\",\n  \"email\": \"joao.santos@email.com\",\n  \"endereco\": \"Rua das Flores, 456\",\n  \"bairro\": \"Centro\",\n  \"cidade\": \"São Paulo\",\n  \"estado\": \"SP\",\n  \"cep\": \"01234567\",\n  \"prioridade\": \"IDOSO\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/pacientes/:id",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "pacientes", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Atualiza os dados de um paciente"
+					}
+				},
+				{
+					"name": "Desativar Paciente",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/pacientes/:id/desativar",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "pacientes", ":id", "desativar"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Desativa um paciente (soft delete)"
+					}
+				},
+				{
+					"name": "Ativar Paciente",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/pacientes/:id/ativar",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "pacientes", ":id", "ativar"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Reativa um paciente desativado"
+					}
+				}
+			]
+		},
+		{
+			"name": "Profissionais",
+			"description": "Gerenciamento de profissionais de saúde",
+			"item": [
+				{
+					"name": "Cadastrar Profissional",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"Dra. Maria Oliveira\",\n  \"cpf\": \"98765432101\",\n  \"registroProfissional\": \"CRM123456\",\n  \"especialidade\": \"CARDIOLOGIA\",\n  \"telefone\": \"11988887777\",\n  \"email\": \"maria.oliveira@hospital.com\",\n  \"unidadeSaudeId\": 1\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/profissionais",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "profissionais"]
+						},
+						"description": "Cadastra um novo profissional de saúde"
+					}
+				},
+				{
+					"name": "Buscar Profissional por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/profissionais/:id",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "profissionais", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Busca um profissional pelo ID"
+					}
+				},
+				{
+					"name": "Listar Todos os Profissionais",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/profissionais",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "profissionais"]
+						},
+						"description": "Lista todos os profissionais cadastrados"
+					}
+				},
+				{
+					"name": "Buscar Profissionais por Especialidade",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/profissionais/especialidade/:especialidade",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "profissionais", "especialidade", ":especialidade"],
+							"variable": [
+								{
+									"key": "especialidade",
+									"value": "CARDIOLOGIA"
+								}
+							]
+						},
+						"description": "Busca profissionais por especialidade"
+					}
+				},
+				{
+					"name": "Buscar Profissionais por Unidade de Saúde",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/profissionais/unidade/:unidadeId",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "profissionais", "unidade", ":unidadeId"],
+							"variable": [
+								{
+									"key": "unidadeId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Busca profissionais por unidade de saúde"
+					}
+				},
+				{
+					"name": "Buscar Profissionais por Especialidade e Unidade",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/profissionais/buscar?especialidade=CARDIOLOGIA&unidadeId=1",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "profissionais", "buscar"],
+							"query": [
+								{
+									"key": "especialidade",
+									"value": "CARDIOLOGIA"
+								},
+								{
+									"key": "unidadeId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Busca profissionais por especialidade e unidade de saúde"
+					}
+				},
+				{
+					"name": "Listar Especialidades Disponíveis",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/profissionais/especialidades",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "profissionais", "especialidades"]
+						},
+						"description": "Lista todas as especialidades disponíveis no sistema"
+					}
+				},
+				{
+					"name": "Atualizar Profissional",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"Dra. Maria Oliveira Santos\",\n  \"cpf\": \"98765432101\",\n  \"registroProfissional\": \"CRM123456\",\n  \"especialidade\": \"CARDIOLOGIA\",\n  \"telefone\": \"11988886666\",\n  \"email\": \"maria.santos@hospital.com\",\n  \"unidadeSaudeId\": 1\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/profissionais/:id",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "profissionais", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Atualiza os dados de um profissional"
+					}
+				},
+				{
+					"name": "Desativar Profissional",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/profissionais/:id/desativar",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "profissionais", ":id", "desativar"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Desativa um profissional (soft delete)"
+					}
+				},
+				{
+					"name": "Ativar Profissional",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/profissionais/:id/ativar",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "profissionais", ":id", "ativar"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Reativa um profissional desativado"
+					}
+				}
+			]
+		},
+		{
+			"name": "Unidades de Saúde",
+			"description": "Gerenciamento de unidades de saúde (UBS, hospitais, clínicas)",
+			"item": [
+				{
+					"name": "Cadastrar Unidade de Saúde",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"UBS Central\",\n  \"cnes\": \"1234567\",\n  \"endereco\": \"Av. Principal, 1000\",\n  \"bairro\": \"Centro\",\n  \"cidade\": \"São Paulo\",\n  \"estado\": \"SP\",\n  \"cep\": \"01234000\",\n  \"telefone\": \"1133334444\",\n  \"email\": \"ubs.central@saude.gov.br\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/unidades-saude",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "unidades-saude"]
+						},
+						"description": "Cadastra uma nova unidade de saúde"
+					}
+				},
+				{
+					"name": "Buscar Unidade de Saúde por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/unidades-saude/:id",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "unidades-saude", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Busca uma unidade de saúde pelo ID"
+					}
+				},
+				{
+					"name": "Buscar Unidade de Saúde por CNES",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/unidades-saude/cnes/:cnes",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "unidades-saude", "cnes", ":cnes"],
+							"variable": [
+								{
+									"key": "cnes",
+									"value": "1234567"
+								}
+							]
+						},
+						"description": "Busca uma unidade de saúde pelo código CNES"
+					}
+				},
+				{
+					"name": "Listar Todas as Unidades de Saúde",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/unidades-saude",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "unidades-saude"]
+						},
+						"description": "Lista todas as unidades de saúde cadastradas"
+					}
+				},
+				{
+					"name": "Buscar Unidades de Saúde por Cidade",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/unidades-saude/cidade/:cidade",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "unidades-saude", "cidade", ":cidade"],
+							"variable": [
+								{
+									"key": "cidade",
+									"value": "São Paulo"
+								}
+							]
+						},
+						"description": "Busca unidades de saúde por cidade"
+					}
+				},
+				{
+					"name": "Buscar Unidades de Saúde por Nome",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/unidades-saude/buscar?nome=UBS",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "unidades-saude", "buscar"],
+							"query": [
+								{
+									"key": "nome",
+									"value": "UBS"
+								}
+							]
+						},
+						"description": "Busca unidades de saúde pelo nome (busca parcial)"
+					}
+				},
+				{
+					"name": "Atualizar Unidade de Saúde",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"UBS Central - Atualizada\",\n  \"cnes\": \"1234567\",\n  \"endereco\": \"Av. Principal, 1000\",\n  \"bairro\": \"Centro\",\n  \"cidade\": \"São Paulo\",\n  \"estado\": \"SP\",\n  \"cep\": \"01234000\",\n  \"telefone\": \"1133335555\",\n  \"email\": \"ubs.central.novo@saude.gov.br\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/unidades-saude/:id",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "unidades-saude", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Atualiza os dados de uma unidade de saúde"
+					}
+				},
+				{
+					"name": "Desativar Unidade de Saúde",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/unidades-saude/:id/desativar",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "unidades-saude", ":id", "desativar"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Desativa uma unidade de saúde (soft delete)"
+					}
+				},
+				{
+					"name": "Ativar Unidade de Saúde",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/unidades-saude/:id/ativar",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "unidades-saude", ":id", "ativar"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Reativa uma unidade de saúde desativada"
+					}
+				}
+			]
+		},
+		{
+			"name": "Horários Disponíveis",
+			"description": "Gerenciamento de horários disponíveis dos profissionais",
+			"item": [
+				{
+					"name": "Cadastrar Horário Disponível",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"profissionalId\": 1,\n  \"diaSemana\": \"MONDAY\",\n  \"horaInicio\": \"08:00\",\n  \"horaFim\": \"12:00\",\n  \"duracaoConsultaMinutos\": 30,\n  \"vagasPorHorario\": 1\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/horarios-disponiveis",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "horarios-disponiveis"]
+						},
+						"description": "Cadastra um novo horário disponível para um profissional"
+					}
+				},
+				{
+					"name": "Buscar Horário por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/horarios-disponiveis/:id",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "horarios-disponiveis", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Busca um horário disponível pelo ID"
+					}
+				},
+				{
+					"name": "Listar Horários por Profissional",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/horarios-disponiveis/profissional/:profissionalId",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "horarios-disponiveis", "profissional", ":profissionalId"],
+							"variable": [
+								{
+									"key": "profissionalId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Lista todos os horários disponíveis de um profissional"
+					}
+				},
+				{
+					"name": "Atualizar Horário Disponível",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"profissionalId\": 1,\n  \"diaSemana\": \"MONDAY\",\n  \"horaInicio\": \"08:00\",\n  \"horaFim\": \"13:00\",\n  \"duracaoConsultaMinutos\": 30,\n  \"vagasPorHorario\": 2\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/horarios-disponiveis/:id",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "horarios-disponiveis", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Atualiza um horário disponível"
+					}
+				},
+				{
+					"name": "Desativar Horário",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/horarios-disponiveis/:id/desativar",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "horarios-disponiveis", ":id", "desativar"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Desativa um horário disponível"
+					}
+				},
+				{
+					"name": "Ativar Horário",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/horarios-disponiveis/:id/ativar",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "horarios-disponiveis", ":id", "ativar"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Reativa um horário desativado"
+					}
+				},
+				{
+					"name": "Excluir Horário",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/horarios-disponiveis/:id",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "horarios-disponiveis", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Exclui permanentemente um horário disponível"
+					}
+				}
+			]
+		},
+		{
+			"name": "Agendamentos",
+			"description": "Gerenciamento de agendamentos de consultas e exames",
+			"item": [
+				{
+					"name": "Criar Agendamento",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"pacienteId\": 1,\n  \"profissionalId\": 1,\n  \"dataAgendamento\": \"2026-02-15\",\n  \"horaAgendamento\": \"09:00\",\n  \"tipoAtendimento\": \"CONSULTA\",\n  \"observacoes\": \"Primeira consulta - avaliação geral\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/agendamentos",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "agendamentos"]
+						},
+						"description": "Cria um novo agendamento"
+					}
+				},
+				{
+					"name": "Buscar Agendamento por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/agendamentos/:id",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "agendamentos", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Busca um agendamento pelo ID"
+					}
+				},
+				{
+					"name": "Buscar Agendamentos por Paciente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/agendamentos/paciente/:pacienteId",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "agendamentos", "paciente", ":pacienteId"],
+							"variable": [
+								{
+									"key": "pacienteId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Busca todos os agendamentos de um paciente"
+					}
+				},
+				{
+					"name": "Buscar Histórico do Paciente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/agendamentos/paciente/:pacienteId/historico",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "agendamentos", "paciente", ":pacienteId", "historico"],
+							"variable": [
+								{
+									"key": "pacienteId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Busca o histórico completo de agendamentos de um paciente"
+					}
+				},
+				{
+					"name": "Buscar Agendamentos por Profissional e Data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/agendamentos/profissional/:profissionalId?data=2026-02-15",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "agendamentos", "profissional", ":profissionalId"],
+							"query": [
+								{
+									"key": "data",
+									"value": "2026-02-15"
+								}
+							],
+							"variable": [
+								{
+									"key": "profissionalId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Busca agendamentos de um profissional em uma data específica"
+					}
+				},
+				{
+					"name": "Buscar Agendamentos por Unidade e Data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/agendamentos/unidade/:unidadeId?data=2026-02-15",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "agendamentos", "unidade", ":unidadeId"],
+							"query": [
+								{
+									"key": "data",
+									"value": "2026-02-15"
+								}
+							],
+							"variable": [
+								{
+									"key": "unidadeId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Busca agendamentos de uma unidade de saúde em uma data específica"
+					}
+				},
+				{
+					"name": "Buscar Vagas Disponíveis",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/agendamentos/vagas-disponiveis?especialidade=CARDIOLOGIA&dataInicio=2026-02-01&dataFim=2026-02-28",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "agendamentos", "vagas-disponiveis"],
+							"query": [
+								{
+									"key": "especialidade",
+									"value": "CARDIOLOGIA"
+								},
+								{
+									"key": "dataInicio",
+									"value": "2026-02-01"
+								},
+								{
+									"key": "dataFim",
+									"value": "2026-02-28"
+								}
+							]
+						},
+						"description": "Busca vagas disponíveis para agendamento por especialidade e período"
+					}
+				},
+				{
+					"name": "Confirmar Agendamento",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/agendamentos/:id/confirmar",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "agendamentos", ":id", "confirmar"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Confirma um agendamento (status: CONFIRMADO)"
+					}
+				},
+				{
+					"name": "Registrar Chegada",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/agendamentos/:id/registrar-chegada",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "agendamentos", ":id", "registrar-chegada"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Registra a chegada do paciente (status: CHEGADA_REGISTRADA)"
+					}
+				},
+				{
+					"name": "Iniciar Atendimento",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/agendamentos/:id/iniciar-atendimento",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "agendamentos", ":id", "iniciar-atendimento"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Inicia o atendimento (status: EM_ATENDIMENTO)"
+					}
+				},
+				{
+					"name": "Concluir Atendimento",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/agendamentos/:id/concluir",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "agendamentos", ":id", "concluir"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Conclui o atendimento (status: CONCLUIDO)"
+					}
+				},
+				{
+					"name": "Cancelar Agendamento",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"motivo\": \"Paciente solicitou cancelamento por motivo pessoal\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/agendamentos/:id/cancelar",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "agendamentos", ":id", "cancelar"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Cancela um agendamento (status: CANCELADO)"
+					}
+				},
+				{
+					"name": "Marcar Não Comparecimento",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/agendamentos/:id/nao-compareceu",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "agendamentos", ":id", "nao-compareceu"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Marca que o paciente não compareceu (status: NAO_COMPARECEU)"
+					}
+				}
+			]
+		},
+		{
+			"name": "Lista de Espera",
+			"description": "Gerenciamento da lista de espera para atendimento",
+			"item": [
+				{
+					"name": "Adicionar à Lista de Espera",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"pacienteId\": 1,\n  \"especialidade\": \"CARDIOLOGIA\",\n  \"unidadeSaudePreferidaId\": 1,\n  \"observacoes\": \"Paciente necessita de consulta de retorno\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/lista-espera",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "lista-espera"]
+						},
+						"description": "Adiciona um paciente à lista de espera"
+					}
+				},
+				{
+					"name": "Buscar por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/lista-espera/:id",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "lista-espera", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Busca um registro da lista de espera pelo ID"
+					}
+				},
+				{
+					"name": "Buscar Fila por Especialidade",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/lista-espera/especialidade/:especialidade",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "lista-espera", "especialidade", ":especialidade"],
+							"variable": [
+								{
+									"key": "especialidade",
+									"value": "CARDIOLOGIA"
+								}
+							]
+						},
+						"description": "Busca a fila de espera por especialidade"
+					}
+				},
+				{
+					"name": "Buscar Fila por Unidade de Saúde",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/lista-espera/unidade/:unidadeId",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "lista-espera", "unidade", ":unidadeId"],
+							"variable": [
+								{
+									"key": "unidadeId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Busca a fila de espera por unidade de saúde"
+					}
+				},
+				{
+					"name": "Buscar Lista de Espera por Paciente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/lista-espera/paciente/:pacienteId",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "lista-espera", "paciente", ":pacienteId"],
+							"variable": [
+								{
+									"key": "pacienteId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Busca todas as entradas na lista de espera de um paciente"
+					}
+				},
+				{
+					"name": "Contar Pacientes na Fila",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/lista-espera/contagem/:especialidade",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "lista-espera", "contagem", ":especialidade"],
+							"variable": [
+								{
+									"key": "especialidade",
+									"value": "CARDIOLOGIA"
+								}
+							]
+						},
+						"description": "Conta o número de pacientes na fila de uma especialidade"
+					}
+				},
+				{
+					"name": "Marcar como Atendido",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/lista-espera/:id/atendido",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "lista-espera", ":id", "atendido"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Marca um paciente como atendido na lista de espera"
+					}
+				},
+				{
+					"name": "Remover da Lista de Espera",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiVersion}}/lista-espera/:id",
+							"host": ["{{baseUrl}}"],
+							"path": ["{{apiVersion}}", "lista-espera", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Remove um paciente da lista de espera"
+					}
+				}
+			]
+		},
+		{
+			"name": "Health Check",
+			"description": "Endpoints de monitoramento",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/actuator/health",
+							"host": ["{{baseUrl}}"],
+							"path": ["actuator", "health"]
+						},
+						"description": "Verifica o status de saúde da aplicação"
+					}
+				},
+				{
+					"name": "Metrics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/actuator/metrics",
+							"host": ["{{baseUrl}}"],
+							"path": ["actuator", "metrics"]
+						},
+						"description": "Exibe métricas da aplicação"
+					}
+				}
+			]
+		}
+	]
+}
