@@ -34,7 +34,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"nome\": \"João da Silva\",\n  \"cpf\": \"12345678901\",\n  \"cartaoSus\": \"123456789012345\",\n  \"dataNascimento\": \"1990-05-15\",\n  \"telefone\": \"11999998888\",\n  \"email\": \"joao.silva@email.com\",\n  \"endereco\": \"Rua das Flores, 123\",\n  \"bairro\": \"Centro\",\n  \"cidade\": \"São Paulo\",\n  \"estado\": \"SP\",\n  \"cep\": \"01234567\",\n  \"prioridade\": null\n}"
+							"raw": "{\n  \"nome\": \"João da Silva\",\n  \"cpf\": \"12345678901\",\n  \"cartaoSus\": \"123456789012345\",\n  \"dataNascimento\": \"1990-05-15\",\n  \"telefone\": \"11999998888\",\n  \"email\": \"joao.silva@email.com\",\n  \"endereco\": \"Rua das Flores, 123\",\n  \"bairro\": \"Centro\",\n  \"cidade\": \"São Paulo\",\n  \"estado\": \"SP\",\n  \"cep\": \"01234567\",\n  \"prioridade\": 0\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/{{apiVersion}}/pacientes",
