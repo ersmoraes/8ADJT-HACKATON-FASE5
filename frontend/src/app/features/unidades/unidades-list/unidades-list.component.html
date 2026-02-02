@@ -1,8 +1,36 @@
-<h2>Unidades de Saúde</h2>
-<mat-card *ngFor="let u of unidades">
-  <mat-card-title>{{ u.nome }}</mat-card-title>
-  <mat-card-content>
-    CNES: {{ u.cnes }}<br>
-    {{ u.endereco }} - {{ u.cidade }}
-  </mat-card-content>
-</mat-card>
+<div class="page">
+  <h2 class="page-title">Unidades de Saúde</h2>
+
+  <div class="list-card">
+    @let unidades = unidades$ | async;
+
+    @if (!unidades) {
+      <p class="status">Carregando...</p>
+    }
+    @else if (unidades.length === 0) {
+      <p class="status">Nenhuma unidade encontrada</p>
+    }
+    @else {
+      <ul class="cards-list">
+        @for (u of unidades; track u.id) {
+          <li class="card-item">
+            <mat-card class="unit-card">
+              <mat-card-title class="unit-title">
+                {{ u.nome }}
+              </mat-card-title>
+
+              <mat-card-content class="unit-content">
+                <div class="unit-line">
+                  <span class="label">CNES:</span> {{ u.cnes }}
+                </div>
+                <div class="unit-line">
+                  {{ u.endereco }} – {{ u.cidade }}
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </li>
+        }
+      </ul>
+    }
+  </div>
+</div>

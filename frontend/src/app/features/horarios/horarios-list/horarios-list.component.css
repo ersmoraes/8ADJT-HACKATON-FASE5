@@ -1,0 +1,48 @@
+/* Lista */
+.sus-list {
+  padding: 0;
+}
+
+/* Item */
+.sus-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 14px 16px;
+  border-bottom: 1px solid #eeeeee;
+  transition: background-color 0.15s ease;
+}
+
+.sus-list-item:hover {
+  background-color: #f5f9f8;
+}
+
+/* Info principal */
+.horario-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.data {
+  font-size: 0.75rem;
+  color: #607d8b;
+}
+
+.hora {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #263238;
+}
+
+/* Profissional */
+.profissional {
+  font-size: 0.8rem;
+  color: #455a64;
+  white-space: nowrap;
+}
+
+/* Último item sem borda */
+mat-list-item:last-child {
+  border-bottom: none;
+}

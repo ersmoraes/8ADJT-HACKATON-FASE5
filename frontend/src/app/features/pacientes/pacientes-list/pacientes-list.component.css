@@ -1,0 +1,86 @@
+/* Page container */
+.page {
+  max-width: 960px;
+  margin: 32px auto;
+  padding: 0 16px;
+  font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Title */
+.page-title {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #1b3a4b;
+  margin-bottom: 24px;
+}
+
+/* Actions */
+.actions {
+  margin-bottom: 24px;
+}
+
+/* Primary button */
+.btn-primary {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #006b5e; /* SUS green-blue */
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #00564c;
+}
+
+/* Status messages */
+.status {
+  color: #555;
+  font-size: 0.95rem;
+  margin-top: 16px;
+}
+
+/* List */
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Card item */
+.card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+  border-color: #b2dfdb;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Card link */
+.card-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Patient name */
+.name {
+  font-weight: 500;
+  color: #1b3a4b;
+}
+
+/* CPF */
+.cpf {
+  font-size: 0.9rem;
+  color: #666;
+}

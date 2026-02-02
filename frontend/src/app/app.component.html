@@ -1,12 +1,17 @@
-<mat-toolbar color="primary">
-  <span>SUS Agenda</span>
-  <span style="flex: 1 1 auto"></span>
-  <button mat-button routerLink="/pacientes">Pacientes</button>
-  <button mat-button routerLink="/unidades">Unidades</button>
-  <button mat-button routerLink="/profissionais">Profissionais</button>
-  <button mat-button routerLink="/agendamentos">Agendamentos</button>
+<mat-toolbar class="sus-toolbar">
+  <div class="toolbar-content">
+    <span class="brand">SUS Agenda</span>
+
+    <nav class="nav">
+      <a mat-button routerLink="/pacientes" routerLinkActive="active">Pacientes</a>
+      <a mat-button routerLink="/unidades" routerLinkActive="active">Unidades</a>
+      <a mat-button routerLink="/profissionais" routerLinkActive="active">Profissionais</a>
+      <a mat-button routerLink="/agendamentos" routerLinkActive="active">Agendamentos</a>
+      <a mat-button routerLink="/horarios" routerLinkActive="active">Horários</a>
+    </nav>
+  </div>
 </mat-toolbar>
 
-<div class="container">
+<div class="page-container">
   <router-outlet></router-outlet>
 </div>

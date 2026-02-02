@@ -1,0 +1,55 @@
+/* Lista de cards */
+.cards-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Item da lista */
+.card-item {
+  margin-bottom: 12px;
+}
+
+/* Card da unidade */
+.unit-card {
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  box-shadow: none;
+  transition: background-color 0.15s ease;
+}
+
+/* Hover sutil */
+.unit-card:hover {
+  background-color: #f5f9f8;
+}
+
+/* Título */
+.unit-title {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #1b3a4b;
+  padding: 16px 16px 0 16px;
+}
+
+/* Conteúdo */
+.unit-content {
+  font-size: 0.85rem;
+  color: #455a64;
+  padding: 8px 16px 16px 16px;
+}
+
+/* Linha de info */
+.unit-line {
+  margin-top: 4px;
+}
+
+/* Label discreto */
+.label {
+  font-weight: 500;
+  color: #607d8b;
+}
+
+/* Remove padding padrão estranho */
+mat-card {
+  padding: 0;
+}

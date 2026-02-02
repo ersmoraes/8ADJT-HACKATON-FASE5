@@ -1,14 +1,39 @@
-<h2>Agendamentos</h2>
-<mat-table [dataSource]="agendamentos">
-  <ng-container matColumnDef="id">
-    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
-    <mat-cell *matCellDef="let a"> {{a.id}} </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="paciente">
-    <mat-header-cell *matHeaderCellDef> Paciente ID </mat-header-cell>
-    <mat-cell *matCellDef="let a"> {{a.pacienteId}} </mat-cell>
-  </ng-container>
+<div class="page">
+  <h2 class="page-title">Agendamentos</h2>
 
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-</mat-table>
+  <div class="list-card">
+    @if (!agendamentos || agendamentos.length === 0) {
+    <ng-template #empty>
+      <p class="status">Nenhum agendamento encontrado</p>
+    </ng-template>
+    } @else {
+    <mat-table class="sus-table" [dataSource]="agendamentos">
+      <!-- ID -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+        <mat-cell *matCellDef="let a">
+          {{ a.id }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Paciente -->
+      <ng-container matColumnDef="paciente">
+        <mat-header-cell *matHeaderCellDef>Paciente</mat-header-cell>
+        <mat-cell *matCellDef="let a">
+          {{ a.pacienteNome }}
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row
+        *matHeaderRowDef="displayedColumns"
+        class="sus-header-row"
+      ></mat-header-row>
+
+      <mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        class="sus-row"
+      ></mat-row>
+    </mat-table>
+    }
+  </div>
+</div>

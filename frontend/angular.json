@@ -17,9 +17,9 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [],
-            "styles": ["src/styles.css"],
-            "scripts": []
-          }
+            "styles": ["src/styles.css"]
+          },
+          "namedChunks": true
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",

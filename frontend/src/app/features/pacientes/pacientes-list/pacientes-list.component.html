@@ -1,7 +1,24 @@
-<h2>Pacientes</h2>
-<a routerLink="/pacientes/novo">Novo paciente</a>
-<ul>
-  <li *ngFor="let p of pacientes">
-    <a [routerLink]="['/pacientes', p.id]">{{ p.nome }} - {{ p.cpf }}</a>
-  </li>
-</ul>
+<div class="page">
+  <h2 class="page-title">Pacientes</h2>
+
+  <div class="actions">
+    <a class="btn-primary" routerLink="/pacientes/novo">Novo paciente</a>
+  </div>
+
+  @let pacientes = pacientes$ | async; @if (!pacientes) {
+  <p class="status">Carregando...</p>
+  } @else if (pacientes.length === 0) {
+  <p class="status">Nenhum paciente encontrado</p>
+  } @else {
+  <ul class="list">
+    @for (p of pacientes; track p.id) {
+    <li class="card">
+      <a [routerLink]="['/pacientes', p.id]" class="card-link">
+        <span class="name">{{ p.nome }}</span>
+        <span class="cpf">{{ p.cpf }}</span>
+      </a>
+    </li>
+    }
+  </ul>
+  }
+</div>

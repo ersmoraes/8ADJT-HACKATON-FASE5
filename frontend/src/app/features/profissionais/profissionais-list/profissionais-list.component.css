@@ -1,0 +1,55 @@
+/* Card da lista */
+.list-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 8px 0;
+  max-width: 720px;
+}
+
+/* Estados (loading / vazio) */
+.status {
+  padding: 16px 24px;
+  color: #546e7a;
+  font-size: 0.95rem;
+}
+
+/* Item da lista */
+.list-item {
+  padding: 12px 24px;
+  cursor: default;
+}
+
+/* Remove efeito Material exagerado */
+.list-item:hover {
+  background-color: #f5f9f8;
+}
+
+/* Conteúdo do item */
+.item-content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Nome */
+.item-title {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #1b3a4b;
+}
+
+/* Especialidade */
+.item-subtitle {
+  font-size: 0.85rem;
+  color: #607d8b;
+  margin-top: 2px;
+}
+
+/* Ajuste Material default */
+mat-list {
+  padding: 0;
+}
+
+mat-list-item {
+  height: auto !important;
+}

@@ -1,7 +1,26 @@
-<h2>Paciente</h2>
-<form [formGroup]="form" (ngSubmit)="save()">
-  <label>Nome<input formControlName="nome"></label>
-  <label>CPF<input formControlName="cpf"></label>
-  <label>Cartão SUS<input formControlName="cartaoSus"></label>
-  <button type="submit">Salvar</button>
-</form>
+<div class="page">
+  <h2 class="page-title">Paciente</h2>
+
+  <form class="form-card" [formGroup]="form" (ngSubmit)="save()">
+    <div class="field">
+      <label for="nome">Nome</label>
+      <input id="nome" type="text" formControlName="nome" />
+    </div>
+
+    <div class="field">
+      <label for="cpf">CPF</label>
+      <input id="cpf" type="text" formControlName="cpf" />
+    </div>
+
+    <div class="field">
+      <label for="cartaoSus">Cartão SUS</label>
+      <input id="cartaoSus" type="text" formControlName="cartaoSus" />
+    </div>
+
+    <div class="actions">
+      <button class="btn-primary" type="submit" [disabled]="form.invalid">
+        Salvar
+      </button>
+    </div>
+  </form>
+</div>

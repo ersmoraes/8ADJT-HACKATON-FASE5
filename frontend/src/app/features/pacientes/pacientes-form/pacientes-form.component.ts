@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PacienteRequest, PacienteResponse } from '../../../core/models/paciente.model';
 import { PacienteService } from '../../../core/services/paciente.service';
@@ -7,7 +7,11 @@ import { PacienteService } from '../../../core/services/paciente.service';
 @Component({
   selector: 'app-pacientes-form',
   templateUrl: './pacientes-form.component.html',
-  standalone: false
+  styleUrl: './pacientes-form.component.css',
+  imports: [
+    FormsModule,
+    ReactiveFormsModule
+    ]
 })
 export class PacientesFormComponent implements OnInit {
   form: FormGroup;

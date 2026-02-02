@@ -1,0 +1,41 @@
+/* Container da tabela */
+.sus-table {
+  width: 100%;
+  background: transparent;
+  border-collapse: collapse;
+}
+
+/* Header */
+.sus-header-row {
+  background-color: #f1f5f4;
+}
+
+mat-header-cell {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #455a64;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Linhas */
+.sus-row {
+  transition: background-color 0.15s ease;
+}
+
+.sus-row:hover {
+  background-color: #f5f9f8;
+}
+
+/* Células */
+mat-cell {
+  font-size: 0.85rem;
+  color: #263238;
+  padding: 12px 16px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+/* Remove borda final */
+mat-row:last-child mat-cell {
+  border-bottom: none;
+}

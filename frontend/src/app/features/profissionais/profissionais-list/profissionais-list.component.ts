@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { ProfissionalService } from '../../../core/services/profissional.service';
-import { ProfissionalResponse } from '../../../core/models/profissional.model';
+import { CommonModule } from "@angular/common";
+import { Component } from "@angular/core";
+import { MatListModule } from "@angular/material/list";
+import { Observable } from "rxjs";
+import { ProfissionalResponse } from "../../../core/models/profissional.model";
+import { ProfissionalService } from "../../../core/services/profissional.service";
 
 @Component({
-  selector: 'app-profissionais-list',
-  templateUrl: './profissionais-list.component.html',
-  standalone: false
+  selector: "app-profissionais-list",
+  templateUrl: "./profissionais-list.component.html",
+  styleUrl: "./profissionais-list.component.css",
+  imports: [CommonModule, MatListModule],
 })
-export class ProfissionaisListComponent implements OnInit {
-  profissionais: ProfissionalResponse[] = [];
+export class ProfissionaisListComponent {
+  profissionais$: Observable<ProfissionalResponse[]>;
 
-  constructor(private service: ProfissionalService) {}
-
-  ngOnInit(): void {
-    this.service.list().subscribe(p => this.profissionais = p);
+  constructor(private service: ProfissionalService) {
+    this.profissionais$ = this.service.list();
   }
 }

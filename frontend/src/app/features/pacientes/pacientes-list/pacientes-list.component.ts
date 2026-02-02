@@ -1,18 +1,21 @@
-import { Component, OnInit } from "@angular/core";
-import { PacienteService } from "../../../core/services/paciente.service";
+import { CommonModule } from "@angular/common";
+import { Component } from "@angular/core";
+import { RouterLink } from "@angular/router";
+import { Observable } from "rxjs";
 import { PacienteResponse } from "../../../core/models/paciente.model";
+import { PacienteService } from "../../../core/services/paciente.service";
 
 @Component({
   selector: "app-pacientes-list",
   templateUrl: "./pacientes-list.component.html",
-  standalone: false,
+  styleUrl: "./pacientes-list.component.css",
+  standalone: true,
+  imports: [CommonModule, RouterLink],
 })
-export class PacientesListComponent implements OnInit {
-  pacientes: PacienteResponse[] = [];
+export class PacientesListComponent {
+  pacientes$: Observable<PacienteResponse[]>;
 
-  constructor(private service: PacienteService) {}
-
-  ngOnInit(): void {
-    this.service.list().subscribe((p) => (this.pacientes = p));
+  constructor(private service: PacienteService) {
+    this.pacientes$ = this.service.list();
   }
 }

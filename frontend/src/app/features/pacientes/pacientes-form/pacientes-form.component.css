@@ -1,0 +1,73 @@
+/* Card-style form */
+.form-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 24px;
+  max-width: 520px;
+}
+
+/* Field wrapper */
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+/* Labels */
+.field label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #1b3a4b;
+  margin-bottom: 6px;
+}
+
+/* Inputs */
+.field input {
+  padding: 10px 12px;
+  border-radius: 4px;
+  border: 1px solid #cfd8dc;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Focus state */
+.field input:focus {
+  outline: none;
+  border-color: #006b5e;
+  box-shadow: 0 0 0 2px rgba(0, 107, 94, 0.15);
+}
+
+/* Disabled input */
+.field input:disabled {
+  background-color: #f5f5f5;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+/* Submit button (reuse from previous style) */
+.btn-primary {
+  padding: 10px 24px;
+  background-color: #006b5e;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #00564c;
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

@@ -1,19 +1,40 @@
-import { Component, OnInit } from '@angular/core';
-import { AgendamentoService } from '../../../core/services/agendamento.service';
-import { AgendamentoResponse } from '../../../core/models/agendamento.model';
+import { CommonModule } from "@angular/common";
+import { ChangeDetectorRef, Component } from "@angular/core";
+import {
+  MatCell,
+  MatHeaderCell,
+  MatHeaderRow,
+  MatRow,
+  MatTableModule,
+} from "@angular/material/table";
+import { AgendamentoResponse } from "../../../core/models/agendamento.model";
+import { AgendamentoService } from "../../../core/services/agendamento.service";
+import { Observable } from "rxjs";
 
 @Component({
-  selector: 'app-agendamentos-list',
-  templateUrl: './agendamentos-list.component.html',
-  standalone: false
+  selector: "app-agendamentos-list",
+  templateUrl: "./agendamentos-list.component.html",
+  styleUrl: "./agendamentos-list.component.css",
+  imports: [
+    CommonModule,
+    MatTableModule,
+    MatHeaderCell,
+    MatCell,
+    MatHeaderRow,
+    MatRow,
+    MatTableModule,
+  ],
 })
-export class AgendamentosListComponent implements OnInit {
+export class AgendamentosListComponent {
   agendamentos: AgendamentoResponse[] = [];
-  displayedColumns = ['id', 'paciente'];
+  displayedColumns = ["id", "paciente"];
 
-  constructor(private service: AgendamentoService) {}
-
-  ngOnInit(): void {
-    this.service.listByPaciente(1).subscribe(a => this.agendamentos = a);
+  constructor(private service: AgendamentoService,
+    private cdr: ChangeDetectorRef
+  ) {
+    this.service.listByPaciente(1).subscribe((a) => {
+      this.agendamentos = a;
+      this.cdr.detectChanges();
+    });
   }
 }

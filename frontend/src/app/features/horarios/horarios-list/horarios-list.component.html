@@ -1,4 +1,24 @@
-<h2>Horários Disponíveis</h2>
-<mat-list>
-  <mat-list-item *ngFor="let h of horarios">{{ h.data }} - {{ h.hora }} - Profissional {{ h.profissionalId }}</mat-list-item>
-</mat-list>
+<div class="page">
+  <h2 class="page-title">Horários Disponíveis</h2>
+
+  <div class="list-card">
+    @if (!horarios || horarios.length === 0) {
+      <p class="status">Nenhum horário disponível</p>
+    } @else {
+      <mat-list class="sus-list">
+        @for (h of horarios; track h.id) {
+          <mat-list-item class="sus-list-item">
+            <div class="horario-info">
+              <span class="data">{{ h.data }}</span>
+              <span class="hora">{{ h.hora }}</span>
+            </div>
+
+            <div class="profissional">
+              Profissional {{ h.profissionalId }}
+            </div>
+          </mat-list-item>
+        }
+      </mat-list>
+    }
+  </div>
+</div>
