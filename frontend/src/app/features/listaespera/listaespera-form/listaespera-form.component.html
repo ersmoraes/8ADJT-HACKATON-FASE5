@@ -1,6 +1,18 @@
 <div class="page">
   <h2 class="page-title">Adicionar à Lista de Espera</h2>
 
+  @if (successMessage) {
+    <div class="alert alert-success">
+      {{ successMessage }}
+    </div>
+  }
+
+  @if (errorMessage) {
+    <div class="alert alert-error">
+      {{ errorMessage }}
+    </div>
+  }
+
   <form class="form-card" [formGroup]="form" (ngSubmit)="save()">
     <div class="field">
       <label for="pacienteId">Paciente *</label>

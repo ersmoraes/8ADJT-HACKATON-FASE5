@@ -16,6 +16,8 @@ import { PacienteService } from '../../../core/services/paciente.service';
 export class PacientesFormComponent implements OnInit {
   form: FormGroup;
   id?: number;
+  successMessage: string = '';
+  errorMessage: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -49,11 +51,30 @@ export class PacientesFormComponent implements OnInit {
   }
 
   save() {
+    this.successMessage = '';
+    this.errorMessage = '';
+
     const req: PacienteRequest = this.form.value;
     if (this.id) {
-      this.service.update(this.id, req).subscribe(() => this.router.navigate(['/pacientes']));
+      this.service.update(this.id, req).subscribe({
+        next: () => {
+          this.successMessage = 'Paciente atualizado com sucesso!';
+          setTimeout(() => this.router.navigate(['/pacientes']), 2000);
+        },
+        error: (err) => {
+          this.errorMessage = err.error?.message || err.error?.error || 'Erro ao atualizar paciente';
+        }
+      });
     } else {
-      this.service.create(req).subscribe(() => this.router.navigate(['/pacientes']));
+      this.service.create(req).subscribe({
+        next: () => {
+          this.successMessage = 'Paciente criado com sucesso!';
+          setTimeout(() => this.router.navigate(['/pacientes']), 2000);
+        },
+        error: (err) => {
+          this.errorMessage = err.error?.message || err.error?.error || 'Erro ao criar paciente';
+        }
+      });
     }
   }
 }

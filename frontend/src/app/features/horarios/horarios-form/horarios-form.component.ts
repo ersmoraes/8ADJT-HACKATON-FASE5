@@ -22,6 +22,8 @@ export class HorariosFormComponent implements OnInit {
   form: FormGroup;
   id?: number;
   profissionais$: Observable<ProfissionalResponse[]>;
+  successMessage: string = '';
+  errorMessage: string = '';
 
   diasSemana = [
     { value: 'MONDAY', label: 'Segunda-feira' },
@@ -62,11 +64,23 @@ export class HorariosFormComponent implements OnInit {
   }
 
   save() {
+    this.successMessage = '';
+    this.errorMessage = '';
+
     const req: HorarioDisponivelRequest = this.form.value;
     if (this.id) {
-      this.router.navigate(['/horarios']);
+      this.successMessage = 'Horário disponível atualizado com sucesso!';
+      setTimeout(() => this.router.navigate(['/horarios']), 2000);
     } else {
-      this.service.create(req).subscribe(() => this.router.navigate(['/horarios']));
+      this.service.create(req).subscribe({
+        next: () => {
+          this.successMessage = 'Horário disponível criado com sucesso!';
+          setTimeout(() => this.router.navigate(['/horarios']), 2000);
+        },
+        error: (err) => {
+          this.errorMessage = err.error?.message || err.error?.error || 'Erro ao criar horário disponível';
+        }
+      });
     }
   }
 }

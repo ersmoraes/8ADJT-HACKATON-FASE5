@@ -22,6 +22,8 @@ export class ProfissionaisFormComponent implements OnInit {
   form: FormGroup;
   id?: number;
   unidades$: Observable<UnidadeSaudeResponse[]>;
+  successMessage: string = '';
+  errorMessage: string = '';
 
   especialidades = [
     'CARDIOLOGIA',
@@ -66,11 +68,30 @@ export class ProfissionaisFormComponent implements OnInit {
   }
 
   save() {
+    this.successMessage = '';
+    this.errorMessage = '';
+
     const req: ProfissionalRequest = this.form.value;
     if (this.id) {
-      this.service.update(this.id, req).subscribe(() => this.router.navigate(['/profissionais']));
+      this.service.update(this.id, req).subscribe({
+        next: () => {
+          this.successMessage = 'Profissional atualizado com sucesso!';
+          setTimeout(() => this.router.navigate(['/profissionais']), 2000);
+        },
+        error: (err) => {
+          this.errorMessage = err.error?.message || err.error?.error || 'Erro ao atualizar profissional';
+        }
+      });
     } else {
-      this.service.create(req).subscribe(() => this.router.navigate(['/profissionais']));
+      this.service.create(req).subscribe({
+        next: () => {
+          this.successMessage = 'Profissional criado com sucesso!';
+          setTimeout(() => this.router.navigate(['/profissionais']), 2000);
+        },
+        error: (err) => {
+          this.errorMessage = err.error?.message || err.error?.error || 'Erro ao criar profissional';
+        }
+      });
     }
   }
 }

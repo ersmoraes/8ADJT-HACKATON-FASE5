@@ -24,6 +24,8 @@ export class ListaesperaFormComponent implements OnInit {
   form: FormGroup;
   pacientes$: Observable<PacienteResponse[]>;
   unidades$: Observable<UnidadeSaudeResponse[]>;
+  successMessage: string = '';
+  errorMessage: string = '';
 
   especialidades = [
     'CARDIOLOGIA',
@@ -60,7 +62,18 @@ export class ListaesperaFormComponent implements OnInit {
   }
 
   save() {
+    this.successMessage = '';
+    this.errorMessage = '';
+
     const req: ListaEsperaRequest = this.form.value;
-    this.service.add(req).subscribe(() => this.router.navigate(['/lista-espera']));
+    this.service.add(req).subscribe({
+      next: () => {
+        this.successMessage = 'Paciente adicionado à lista de espera com sucesso!';
+        setTimeout(() => this.router.navigate(['/lista-espera']), 2000);
+      },
+      error: (err) => {
+        this.errorMessage = err.error?.message || err.error?.error || 'Erro ao adicionar à lista de espera';
+      }
+    });
   }
 }

@@ -16,6 +16,8 @@ import { UnidadeService } from '../../../core/services/unidade.service';
 export class UnidadesFormComponent implements OnInit {
   form: FormGroup;
   id?: number;
+  successMessage: string = '';
+  errorMessage: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -46,11 +48,30 @@ export class UnidadesFormComponent implements OnInit {
   }
 
   save() {
+    this.successMessage = '';
+    this.errorMessage = '';
+
     const req: UnidadeSaudeRequest = this.form.value;
     if (this.id) {
-      this.service.update(this.id, req).subscribe(() => this.router.navigate(['/unidades']));
+      this.service.update(this.id, req).subscribe({
+        next: () => {
+          this.successMessage = 'Unidade de saúde atualizada com sucesso!';
+          setTimeout(() => this.router.navigate(['/unidades']), 2000);
+        },
+        error: (err) => {
+          this.errorMessage = err.error?.message || err.error?.error || 'Erro ao atualizar unidade de saúde';
+        }
+      });
     } else {
-      this.service.create(req).subscribe(() => this.router.navigate(['/unidades']));
+      this.service.create(req).subscribe({
+        next: () => {
+          this.successMessage = 'Unidade de saúde criada com sucesso!';
+          setTimeout(() => this.router.navigate(['/unidades']), 2000);
+        },
+        error: (err) => {
+          this.errorMessage = err.error?.message || err.error?.error || 'Erro ao criar unidade de saúde';
+        }
+      });
     }
   }
 }

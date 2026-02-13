@@ -1,6 +1,18 @@
 <div class="page">
   <h2 class="page-title">Paciente</h2>
 
+  @if (successMessage) {
+    <div class="alert alert-success">
+      {{ successMessage }}
+    </div>
+  }
+
+  @if (errorMessage) {
+    <div class="alert alert-error">
+      {{ errorMessage }}
+    </div>
+  }
+
   <form class="form-card" [formGroup]="form" (ngSubmit)="save()">
     <div class="field">
       <label for="nome">Nome *</label>
