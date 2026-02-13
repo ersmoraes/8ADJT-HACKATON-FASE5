@@ -52,4 +52,19 @@ export class AgendamentoService {
     return this.http.patch(`${this.base}/${id}/registrar-chegada`, {});
   }
 
-  iniciarAtendimento(id:
+  iniciarAtendimento(id: number) {
+    return this.http.patch(`${this.base}/${id}/iniciar-atendimento`, {});
+  }
+
+  concluir(id: number) {
+    return this.http.patch(`${this.base}/${id}/concluir`, {});
+  }
+
+  naoCompareceu(id: number) {
+    return this.http.patch(`${this.base}/${id}/nao-compareceu`, {});
+  }
+
+  cancelar(id: number, body: any) {
+    return this.http.patch(`${this.base}/${id}/cancelar`, body);
+  }
+}
