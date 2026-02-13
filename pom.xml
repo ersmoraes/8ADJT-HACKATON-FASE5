@@ -98,6 +98,13 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!-- Cloud SQL Socket Factory -->
+        <dependency>
+            <groupId>com.google.cloud.sql</groupId>
+            <artifactId>postgres-socket-factory</artifactId>
+            <version>1.15.0</version>
+        </dependency>
     </dependencies>
 
     <build>
