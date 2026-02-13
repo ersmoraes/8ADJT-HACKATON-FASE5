@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiBase: '/api/v1'
+  apiUrl: 'https://sus-agenda-616271710357.us-central1.run.app'
 };

@@ -3,9 +3,9 @@ spring:
     name: sus-agenda
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/sus_agenda
-    username: postgres
-    password: postgres
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -27,7 +27,7 @@ spring:
 #      api-key: ${OPENAI_API_KEY}
 
 server:
-  port: 8080
+  port: ${PORT:8080}
 
 springdoc:
   api-docs:
