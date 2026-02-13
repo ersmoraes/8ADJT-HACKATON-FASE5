@@ -106,7 +106,7 @@
             <version>1.15.0</version>
         </dependency>
 
-                <!-- Chat GPT API -->
+        <!-- Chat GPT API -->
         <dependency>
             <groupId>com.theokanning.openai-gpt3-java</groupId>
             <artifactId>service</artifactId>
