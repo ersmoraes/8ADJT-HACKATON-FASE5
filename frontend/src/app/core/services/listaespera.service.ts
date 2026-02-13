@@ -6,7 +6,7 @@ import { environment } from '../../../environments/environment';
 @Injectable({ providedIn: 'root' })
 export class ListaEsperaService {
 
-  private base = `${environment.apiBase}/lista-espera`;
+  private base = `${environment.apiUrl}/api/v1/lista-espera`;
 
   constructor(private http: HttpClient) {}
 
