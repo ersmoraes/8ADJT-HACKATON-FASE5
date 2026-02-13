@@ -134,3 +134,61 @@ mat-card {
 .btn-ativar:hover {
   background-color: #45a049;
 }
+
+/* Responsividade - Tablets */
+@media (max-width: 768px) {
+  .card-item {
+    margin-bottom: 10px;
+  }
+
+  .unit-title {
+    font-size: 0.9rem;
+    padding: 14px 14px 0 14px;
+  }
+
+  .unit-content {
+    font-size: 0.8rem;
+    padding: 6px 14px 14px 14px;
+  }
+}
+
+/* Responsividade - Mobile */
+@media (max-width: 480px) {
+  .actions {
+    margin-bottom: 16px;
+  }
+
+  .btn-primary {
+    width: 100%;
+    text-align: center;
+    padding: 12px 20px;
+  }
+
+  .unit-card {
+    border-radius: 6px;
+  }
+
+  .unit-title {
+    font-size: 0.85rem;
+    padding: 12px 12px 0 12px;
+  }
+
+  .unit-content {
+    font-size: 0.75rem;
+    padding: 6px 12px 12px 12px;
+  }
+
+  .unit-line {
+    margin-top: 6px;
+  }
+
+  mat-card-actions {
+    padding: 8px 12px !important;
+    margin: 0 !important;
+  }
+
+  .btn-toggle {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+}

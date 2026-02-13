@@ -159,3 +159,102 @@ mat-row:last-child mat-cell {
 .btn-ver:hover {
   background-color: #00564c;
 }
+
+/* Responsividade - Tablets */
+@media (max-width: 968px) {
+  .filters {
+    margin-bottom: 16px;
+  }
+
+  .filter-field {
+    max-width: 100%;
+  }
+
+  mat-header-cell,
+  mat-cell {
+    padding: 10px 12px;
+    font-size: 0.8rem;
+  }
+
+  mat-header-cell {
+    font-size: 0.7rem;
+  }
+
+  .status-badge {
+    font-size: 0.7rem;
+    padding: 3px 6px;
+  }
+
+  .btn-ver {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+}
+
+/* Responsividade - Mobile */
+@media (max-width: 768px) {
+  .actions {
+    margin-bottom: 16px;
+  }
+
+  .btn-primary {
+    width: 100%;
+    text-align: center;
+    padding: 12px 20px;
+  }
+
+  .filters {
+    padding: 12px;
+  }
+
+  .filter-field input {
+    font-size: 16px; /* Evita zoom no iOS */
+  }
+
+  /* Esconde tabela e exibe cards no mobile */
+  .list-card {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .sus-table {
+    min-width: 700px;
+  }
+
+  mat-header-cell,
+  mat-cell {
+    padding: 8px 10px;
+    font-size: 0.75rem;
+  }
+
+  mat-header-cell {
+    font-size: 0.65rem;
+  }
+}
+
+/* Responsividade - Mobile Pequeno */
+@media (max-width: 480px) {
+  .sus-table {
+    min-width: 650px;
+  }
+
+  mat-header-cell,
+  mat-cell {
+    padding: 6px 8px;
+    font-size: 0.7rem;
+  }
+
+  mat-header-cell {
+    font-size: 0.6rem;
+  }
+
+  .status-badge {
+    font-size: 0.65rem;
+    padding: 2px 5px;
+  }
+
+  .btn-ver {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+  }
+}

@@ -99,3 +99,49 @@
   color: #721c24;
   border: 1px solid #f5c6cb;
 }
+
+/* Responsividade - Tablets */
+@media (max-width: 768px) {
+  .form-card {
+    padding: 20px;
+    max-width: 100%;
+  }
+
+  .field {
+    margin-bottom: 16px;
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    font-size: 16px; /* Evita zoom no iOS */
+  }
+}
+
+/* Responsividade - Mobile */
+@media (max-width: 480px) {
+  .form-card {
+    padding: 16px;
+    border-radius: 4px;
+  }
+
+  .field label {
+    font-size: 0.85rem;
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    padding: 12px 10px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .btn-primary {
+    width: 100%;
+    padding: 12px 24px;
+    font-size: 1rem;
+  }
+}

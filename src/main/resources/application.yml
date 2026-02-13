@@ -8,6 +8,13 @@ spring:
     password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
+  #dev
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/sus_agenda
+#    username: postgres
+#    password: postgres
+#    driver-class-name: org.postgresql.Driver
+
   jpa:
     hibernate:
       ddl-auto: validate
@@ -28,6 +35,10 @@ spring:
 
 server:
   port: ${PORT:8080}
+
+#dev
+#server:
+#  port: 8080
 
 springdoc:
   api-docs:
