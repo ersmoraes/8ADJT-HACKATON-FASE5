@@ -6,7 +6,7 @@ import { environment } from '../../../environments/environment';
 @Injectable({ providedIn: 'root' })
 export class HorarioService {
 
-  private base = `${environment.apiUrl}/api/v1/horarios-disponiveis`;
+  private base = `${environment.apiBase}/horarios-disponiveis`;
 
   constructor(private http: HttpClient) {}
 
