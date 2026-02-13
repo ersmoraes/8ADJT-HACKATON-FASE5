@@ -30,7 +30,7 @@ import { AgendamentoService } from "../../../core/services/agendamento.service";
 export class AgendamentosListComponent {
   agendamentos: AgendamentoResponse[] = [];
   agendamentosFiltrados: AgendamentoResponse[] = [];
-  displayedColumns = ["id", "paciente", "profissional", "data", "hora", "status"];
+  displayedColumns = ["id", "paciente", "profissional", "data", "hora", "status", "acoes"];
   filtroPacienteId: string = '';
 
   constructor(

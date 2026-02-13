@@ -63,6 +63,14 @@
           </mat-cell>
         </ng-container>
 
+        <!-- Ações -->
+        <ng-container matColumnDef="acoes">
+          <mat-header-cell *matHeaderCellDef>Ações</mat-header-cell>
+          <mat-cell *matCellDef="let a">
+            <a [routerLink]="['/agendamentos', a.id]" class="btn-ver">Ver Detalhes</a>
+          </mat-cell>
+        </ng-container>
+
         <mat-header-row
           *matHeaderRowDef="displayedColumns"
           class="sus-header-row"

@@ -1,0 +1,184 @@
+<div class="page">
+  <h2 class="page-title">Detalhes do Agendamento</h2>
+
+  @if (successMessage) {
+    <div class="alert alert-success">
+      {{ successMessage }}
+    </div>
+  }
+
+  @if (errorMessage) {
+    <div class="alert alert-error">
+      {{ errorMessage }}
+    </div>
+  }
+
+  @if (agendamento) {
+    <div class="detail-card">
+      <div class="detail-header">
+        <h3>Agendamento #{{ agendamento.id }}</h3>
+        <span class="status-badge" [class]="'status-' + agendamento.status.toLowerCase()">
+          {{ agendamento.status }}
+        </span>
+      </div>
+
+      <div class="detail-section">
+        <h4>Informações do Paciente</h4>
+        <div class="detail-row">
+          <span class="label">Nome:</span>
+          <span class="value">{{ agendamento.pacienteNome }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Cartão SUS:</span>
+          <span class="value">{{ agendamento.pacienteCartaoSus }}</span>
+        </div>
+      </div>
+
+      <div class="detail-section">
+        <h4>Informações do Atendimento</h4>
+        <div class="detail-row">
+          <span class="label">Profissional:</span>
+          <span class="value">{{ agendamento.profissionalNome }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Especialidade:</span>
+          <span class="value">{{ agendamento.especialidade }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Unidade de Saúde:</span>
+          <span class="value">{{ agendamento.unidadeSaudeNome }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Data:</span>
+          <span class="value">{{ agendamento.dataAgendamento }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Hora:</span>
+          <span class="value">{{ agendamento.horaAgendamento }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Tipo de Atendimento:</span>
+          <span class="value">{{ agendamento.tipoAtendimento }}</span>
+        </div>
+      </div>
+
+      @if (agendamento.observacoes) {
+        <div class="detail-section">
+          <h4>Observações</h4>
+          <p class="observacoes">{{ agendamento.observacoes }}</p>
+        </div>
+      }
+
+      @if (agendamento.dataConfirmacao) {
+        <div class="detail-section">
+          <h4>Histórico</h4>
+          <div class="detail-row">
+            <span class="label">Data de Confirmação:</span>
+            <span class="value">{{ agendamento.dataConfirmacao }}</span>
+          </div>
+          @if (agendamento.dataChegada) {
+            <div class="detail-row">
+              <span class="label">Data de Chegada:</span>
+              <span class="value">{{ agendamento.dataChegada }}</span>
+            </div>
+          }
+          @if (agendamento.dataInicioAtendimento) {
+            <div class="detail-row">
+              <span class="label">Início do Atendimento:</span>
+              <span class="value">{{ agendamento.dataInicioAtendimento }}</span>
+            </div>
+          }
+          @if (agendamento.dataFimAtendimento) {
+            <div class="detail-row">
+              <span class="label">Fim do Atendimento:</span>
+              <span class="value">{{ agendamento.dataFimAtendimento }}</span>
+            </div>
+          }
+        </div>
+      }
+
+      @if (agendamento.status === 'CANCELADO' && agendamento.motivoCancelamento) {
+        <div class="detail-section cancelamento">
+          <h4>Cancelamento</h4>
+          <div class="detail-row">
+            <span class="label">Motivo:</span>
+            <span class="value">{{ agendamento.motivoCancelamento }}</span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Data:</span>
+            <span class="value">{{ agendamento.dataCancelamento }}</span>
+          </div>
+        </div>
+      }
+
+      <!-- Actions -->
+      <div class="actions-section">
+        <h4>Ações</h4>
+
+        <div class="action-buttons">
+          @if (podeConfirmar()) {
+            <button class="btn btn-confirmar" (click)="confirmar()">
+              Confirmar Agendamento
+            </button>
+          }
+
+          @if (podeRegistrarChegada()) {
+            <button class="btn btn-chegada" (click)="registrarChegada()">
+              Registrar Chegada
+            </button>
+          }
+
+          @if (podeIniciarAtendimento()) {
+            <button class="btn btn-iniciar" (click)="iniciarAtendimento()">
+              Iniciar Atendimento
+            </button>
+          }
+
+          @if (podeConcluir()) {
+            <button class="btn btn-concluir" (click)="concluir()">
+              Concluir Atendimento
+            </button>
+          }
+
+          @if (podeMarcarNaoCompareceu()) {
+            <button class="btn btn-nao-compareceu" (click)="marcarNaoCompareceu()">
+              Marcar Não Compareceu
+            </button>
+          }
+
+          @if (podeCancelar() && !mostrarFormCancelamento) {
+            <button class="btn btn-cancelar" (click)="mostrarCancelamento()">
+              Cancelar Agendamento
+            </button>
+          }
+        </div>
+
+        @if (mostrarFormCancelamento) {
+          <div class="cancelamento-form">
+            <label for="motivo">Motivo do Cancelamento *</label>
+            <textarea
+              id="motivo"
+              [(ngModel)]="motivoCancelamento"
+              rows="3"
+              placeholder="Informe o motivo do cancelamento"
+            ></textarea>
+            <div class="cancelamento-actions">
+              <button class="btn btn-cancelar-confirm" (click)="cancelarAgendamento()">
+                Confirmar Cancelamento
+              </button>
+              <button class="btn btn-secondary" (click)="mostrarFormCancelamento = false; motivoCancelamento = ''">
+                Voltar
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="bottom-actions">
+        <button class="btn btn-secondary" (click)="voltar()">
+          Voltar para Lista
+        </button>
+      </div>
+    </div>
+  }
+</div>

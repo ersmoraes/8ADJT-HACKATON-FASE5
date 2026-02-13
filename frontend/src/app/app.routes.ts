@@ -50,8 +50,8 @@ export const routes: Routes = [
         .then(m => m.AgendamentosFormComponent)},
   {path: 'agendamentos/:id',
     loadComponent: () =>
-      import('./features/agendamentos/agendamentos-form/agendamentos-form.component')
-        .then(m => m.AgendamentosFormComponent)},
+      import('./features/agendamentos/agendamentos-detail/agendamentos-detail.component')
+        .then(m => m.AgendamentosDetailComponent)},
   {path: 'lista-espera',
     loadComponent: () =>
       import('./features/listaespera/listaespera-list/listaespera-list.component')
