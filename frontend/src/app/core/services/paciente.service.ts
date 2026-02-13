@@ -2,10 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PacienteRequest, PacienteResponse } from '../models/paciente.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class PacienteService {
-  private base = '/api/v1/pacientes';
+
+  private base = `${environment.apiUrl}/api/v1/pacientes`;
 
   constructor(private http: HttpClient) {}
 
@@ -18,7 +20,9 @@ export class PacienteService {
   }
 
   searchByName(nome: string) {
-    return this.http.get<PacienteResponse[]>(`${this.base}/buscar?nome=${encodeURIComponent(nome)}`);
+    return this.http.get<PacienteResponse[]>(
+      `${this.base}/buscar?nome=${encodeURIComponent(nome)}`
+    );
   }
 
   create(request: PacienteRequest) {

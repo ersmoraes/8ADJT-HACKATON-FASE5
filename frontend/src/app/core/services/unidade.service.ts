@@ -2,10 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UnidadeSaudeRequest, UnidadeSaudeResponse } from '../models/unidade.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class UnidadeService {
-  private base = '/api/v1/unidades-saude';
+
+  private base = `${environment.apiUrl}/api/v1/unidades-saude`;
 
   constructor(private http: HttpClient) {}
 
@@ -34,6 +36,8 @@ export class UnidadeService {
   }
 
   buscarPorNome(nome: string) {
-    return this.http.get<UnidadeSaudeResponse[]>(`${this.base}/buscar?nome=${encodeURIComponent(nome)}`);
+    return this.http.get<UnidadeSaudeResponse[]>(
+      `${this.base}/buscar?nome=${encodeURIComponent(nome)}`
+    );
   }
 }

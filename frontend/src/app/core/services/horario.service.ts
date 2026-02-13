@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HorarioDisponivelRequest, HorarioDisponivelResponse } from '../models/horario.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class HorarioService {
-  private base = '/api/v1/horarios-disponiveis';
+
+  private base = `${environment.apiUrl}/api/v1/horarios-disponiveis`;
 
   constructor(private http: HttpClient) {}
 
@@ -17,16 +19,26 @@ export class HorarioService {
   }
 
   listByProfissional(profissionalId: number) {
-    return this.http.get<HorarioDisponivelResponse[]>(`${this.base}/profissional/${profissionalId}`);
+    return this.http.get<HorarioDisponivelResponse[]>(
+      `${this.base}/profissional/${profissionalId}`
+    );
   }
 
-  get(id: number) { return this.http.get<HorarioDisponivelResponse>(`${this.base}/${id}`); }
+  get(id: number) {
+    return this.http.get<HorarioDisponivelResponse>(`${this.base}/${id}`);
+  }
 
   desativar(id: number) {
-    return this.http.patch<HorarioDisponivelResponse>(`${this.base}/${id}/desativar`, {});
+    return this.http.patch<HorarioDisponivelResponse>(
+      `${this.base}/${id}/desativar`,
+      {}
+    );
   }
 
   ativar(id: number) {
-    return this.http.patch<HorarioDisponivelResponse>(`${this.base}/${id}/ativar`, {});
+    return this.http.patch<HorarioDisponivelResponse>(
+      `${this.base}/${id}/ativar`,
+      {}
+    );
   }
 }

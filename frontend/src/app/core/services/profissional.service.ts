@@ -2,10 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProfissionalRequest, ProfissionalResponse } from '../models/profissional.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class ProfissionalService {
-  private base = '/api/v1/profissionais';
+
+  private base = `${environment.apiUrl}/api/v1/profissionais`;
 
   constructor(private http: HttpClient) {}
 
@@ -34,6 +36,8 @@ export class ProfissionalService {
   }
 
   buscarPorEspecialidadeEUnidade(especialidade: string, unidadeId: number) {
-    return this.http.get<ProfissionalResponse[]>(`${this.base}/buscar?especialidade=${encodeURIComponent(especialidade)}&unidadeId=${unidadeId}`);
+    return this.http.get<ProfissionalResponse[]>(
+      `${this.base}/buscar?especialidade=${encodeURIComponent(especialidade)}&unidadeId=${unidadeId}`
+    );
   }
 }
