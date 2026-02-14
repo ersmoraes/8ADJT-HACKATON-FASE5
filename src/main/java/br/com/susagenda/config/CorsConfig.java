@@ -18,7 +18,8 @@ public class CorsConfig {
         config.setAllowCredentials(true);
 
         config.setAllowedOrigins(List.of(
-                "https://sus-hackathon-01020304.web.app"
+        "https://sus-hackathon-01020304.web.app",
+        "http://localhost:4200"
         ));
 
         config.setAllowedHeaders(List.of("*"));
