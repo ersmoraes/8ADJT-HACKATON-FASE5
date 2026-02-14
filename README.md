@@ -99,8 +99,8 @@ sus-agenda/
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/sus-agenda.git
-cd sus-agenda
+git clone https://github.com/ersmoraes/8ADJT-HACKATON-FASE5.git
+cd 8ADJT-HACKATON-FASE5
 ```
 
 ### 2. Inicie o banco de dados com Docker
@@ -338,12 +338,11 @@ sus-agenda/frontend/src/app/
 ## 🔮 Próximos Passos (Roadmap)
 
 1. **Autenticação e Autorização** (Spring Security + JWT)
-2. **Notificações** (SMS/E-mail para lembrete de consultas)
-3. **Relatórios e Dashboards** (Métricas de atendimento)
-4. **Integração com sistemas governamentais** (CNES, CNS)
-5. **App mobile** para pacientes
-6. **Cache distribuído** (Redis) para melhor performance
-7. **Mensageria** (RabbitMQ/Kafka) para processamento assíncrono
+2. **Mensageria** (RabbitMQ/Kafka) para processamento assíncrono
+3. **Notificações** (SMS/E-mail para lembrete de consultas)
+4. **Relatórios e Dashboards** (Métricas de atendimento)
+5. **Integração com sistemas governamentais** (CNES, CNS)
+6. **App mobile** para pacientes
 
 ---
 
@@ -352,7 +351,3 @@ sus-agenda/frontend/src/app/
 Desenvolvido para o Hackathon FIAP - Pós-graduação em Arquitetura e Desenvolvimento Java
 
 ---
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
